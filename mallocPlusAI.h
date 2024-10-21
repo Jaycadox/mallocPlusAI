@@ -156,9 +156,11 @@ void* mallocPlusAI (const char *request) {
 		return NULL;
 	}
 
-	char* begin_resp = content + sizeof(needle) + 4; // no idea why i need to add an extra 4 here
-
+	char* begin_resp = content + strlen(needle);
 	size_t resp_len = 0;
+	while (begin_resp[resp_len] == ' ') {
+		++begin_resp;
+	}
 	while (isdigit(begin_resp[resp_len])) {
 		++resp_len;
 	}
